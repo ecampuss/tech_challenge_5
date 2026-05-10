@@ -23,7 +23,7 @@ st.title('Tech Challenge 5 - Passos Mágicos')
 st.subheader('Modelo Preditivo de Risco Educacional')
 
 # Link do arquivo hospedado no GitHub
-URL = 'https://raw.githubusercontent.com/ecampuss/tech_challenge_5/main/base_final.xlsx'
+URL = 'https://raw.githubusercontent.com/ecampuss/tech_challenge_5/main/base_de_dados_passos_magicos.xlsx'
 
 # Cache para evitar recarregar o arquivo toda vez
 @st.cache_data
