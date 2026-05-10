@@ -22,14 +22,11 @@ st.set_page_config(
 st.title('Tech Challenge 5 - Passos Mágicos')
 st.subheader('Modelo Preditivo de Risco Educacional')
 
-# Link do arquivo hospedado no GitHub
-URL = 'https://raw.githubusercontent.com/ecampuss/tech_challenge_5/main/base_de_dados_passos_magicos.xlsx'
-
 # Cache para evitar recarregar o arquivo toda vez
 @st.cache_data
 def load_data():
 
-    df = pd.read_excel(URL)
+    df = pd.read_excel('base_de_dados_passos_magicos.xlsx')
 
     # Garantindo que algumas colunas estejam como texto
     df['Fase'] = df['Fase'].astype(str)
