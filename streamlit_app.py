@@ -28,6 +28,8 @@ def load_data():
 
     df = pd.read_excel('base_de_dados_passos_magicos.xlsx')
 
+    st.write(df.columns.tolist())
+
     # Garantindo que algumas colunas estejam como texto
     df['Fase'] = df['Fase'].astype(str)
     df['Turma'] = df['Turma'].astype(str)
