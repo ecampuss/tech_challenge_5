@@ -3,22 +3,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
-
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import (
-    classification_report,
-    confusion_matrix,
-    accuracy_score,
-    roc_auc_score
-)
-
-from utils import (
-    DataCleaning,
-    MinMax,
-    OneHotEncodingNames
-)
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, roc_auc_score
+from utils import DataCleaning, MinMax, OneHotEncodingNames
 
 
 st.set_page_config(
@@ -54,9 +43,7 @@ def load_data():
 df = load_data()
 
 
-# =========================================================
 # VISÃO GERAL
-# =========================================================
 
 st.header('Visão Geral da Base')
 
@@ -68,9 +55,8 @@ col3.metric('Média IDA', round(df['IDA'].mean(), 2))
 col4.metric('Média IEG', round(df['IEG'].mean(), 2))
 
 
-# =========================================================
+
 # 1. ADEQUAÇÃO DO NÍVEL (IAN)
-# =========================================================
 
 st.header('1. Adequação do nível (IAN)')
 
@@ -99,9 +85,8 @@ significativa de alunos em situação de risco.
 ''')
 
 
-# =========================================================
+
 # 2. DESEMPENHO ACADÊMICO (IDA)
-# =========================================================
 
 st.header('2. Desempenho acadêmico (IDA)')
 
@@ -120,12 +105,27 @@ fig = px.line(
     title='Evolução do IDA ao longo dos anos'
 )
 
+fig.update_xaxes(
+    tickmode='linear',
+    dtick=1
+)
+
 st.plotly_chart(fig, use_container_width=True)
 
+st.markdown('''
+### Como interpretar este gráfico
 
-# =========================================================
+A linha mostra a média do desempenho acadêmico (IDA) ao longo dos anos.
+Quando a linha sobe, significa que o desempenho médio dos alunos está melhorando.
+Quando a linha permanece estável, indica manutenção do desempenho.
+Já quedas na linha podem indicar perda de desempenho acadêmico ao longo do tempo.
+Esse gráfico ajuda a identificar tendências de evolução educacional dos alunos
+participantes do programa.
+''')
+
+
+
 # 3. ENGAJAMENTO (IEG)
-# =========================================================
 
 st.header('3. Relação entre IEG, IDA e IPV')
 
@@ -145,9 +145,8 @@ fig = px.scatter(
 st.plotly_chart(fig, use_container_width=True)
 
 
-# =========================================================
+
 # 4. AUTOAVALIAÇÃO (IAA)
-# =========================================================
 
 st.header('4. Autoavaliação dos alunos (IAA)')
 
@@ -167,9 +166,8 @@ fig = px.scatter(
 st.plotly_chart(fig, use_container_width=True)
 
 
-# =========================================================
+
 # 5. ASPECTOS PSICOSSOCIAIS (IPS)
-# =========================================================
 
 st.header('5. Aspectos psicossociais (IPS)')
 
@@ -188,9 +186,8 @@ fig = px.box(
 st.plotly_chart(fig, use_container_width=True)
 
 
-# =========================================================
+
 # 6. ASPECTOS PSICOPEDAGÓGICOS (IPP)
-# =========================================================
 
 st.header('6. Aspectos psicopedagógicos (IPP)')
 
@@ -210,9 +207,8 @@ fig = px.scatter(
 st.plotly_chart(fig, use_container_width=True)
 
 
-# =========================================================
+
 # 7. PONTO DE VIRADA (IPV)
-# =========================================================
 
 st.header('7. Ponto de virada (IPV)')
 
@@ -233,9 +229,8 @@ corr_ipv = df[[
 st.bar_chart(corr_ipv)
 
 
-# =========================================================
+
 # 8. MULTIDIMENSIONALIDADE
-# =========================================================
 
 st.header('8. Multidimensionalidade dos indicadores')
 
@@ -255,9 +250,8 @@ corr_inde = df[[
 st.bar_chart(corr_inde)
 
 
-# =========================================================
+
 # 9. MACHINE LEARNING
-# =========================================================
 
 st.header('9. Previsão de risco com Machine Learning')
 
@@ -351,9 +345,8 @@ importancias = pd.Series(
 st.bar_chart(importancias)
 
 
-# =========================================================
+
 # 10. EFETIVIDADE DO PROGRAMA
-# =========================================================
 
 st.header('10. Efetividade do programa')
 
