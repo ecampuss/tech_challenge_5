@@ -88,10 +88,14 @@ fig = px.histogram(
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown('''
-### Insight
+### Como interpretar este gráfico
 
-O gráfico mostra a distribuição do nível de adequação dos alunos.
-É possível identificar quantos alunos apresentam maior risco de defasagem.
+Cada barra representa a quantidade de alunos em cada nível de IAN.
+Quanto maior a barra, maior é a concentração de alunos naquele nível de adequação.
+Valores menores de IAN indicam maior risco de defasagem, enquanto valores mais altos
+representam alunos com melhor adequação acadêmica.
+Esse gráfico ajuda a entender o perfil geral da base e identificar se existe uma concentração
+significativa de alunos em situação de risco.
 ''')
 
 
@@ -334,20 +338,6 @@ report = classification_report(
 report_df = pd.DataFrame(report).transpose()
 
 st.dataframe(report_df)
-
-
-# MATRIZ CONFUSÃO
-
-cm = confusion_matrix(y_test, y_pred)
-
-fig = px.imshow(
-    cm,
-    text_auto=True,
-    title='Matriz de Confusão'
-)
-
-st.plotly_chart(fig, use_container_width=True)
-
 
 # FEATURE IMPORTANCE
 
