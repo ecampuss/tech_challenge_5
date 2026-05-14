@@ -336,7 +336,6 @@ fig = px.bar(
     pedra_inde,
     x='Pedra',
     y='INDE',
-    color='Pedra',
     title='INDE médio por Pedra'
 )
 
