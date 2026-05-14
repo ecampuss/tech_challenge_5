@@ -26,15 +26,32 @@ st.subheader('Modelo Preditivo de Risco Educacional')
 @st.cache_data
 def load_data():
 
-    df = pd.read_excel('base_de_dados_passos_magicos.xlsx')
+    file_path = 'base_de_dados_passos_magicos.xlsx'
 
-    st.write(df.columns.tolist())
+    df_2022 = pd.read_excel(
+        file_path,
+        sheet_name='PEDE2022'
+    )
 
-    # Garantindo que algumas colunas estejam como texto
-    df['Fase'] = df['Fase'].astype(str)
-    df['Turma'] = df['Turma'].astype(str)
+    df_2023 = pd.read_excel(
+        file_path,
+        sheet_name='PEDE2023'
+    )
 
-    return df
+    df_2024 = pd.read_excel(
+        file_path,
+        sheet_name='PEDE2024'
+    )
+
+    limpeza = DataCleaning()
+
+    df_final = limpeza.transform({
+        '2022': df_2022,
+        '2023': df_2023,
+        '2024': df_2024
+    })
+
+    return df_final
 
 df = load_data()
 
