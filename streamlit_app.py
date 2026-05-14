@@ -74,6 +74,11 @@ col4.metric('Média IEG', round(df['IEG'].mean(), 2))
 
 st.header('1. Adequação do nível (IAN)')
 
+st.markdown('''
+Qual é o perfil geral de defasagem dos alunos (IAN) e como ele evolui ao 
+longo do ano?
+''')
+
 fig = px.histogram(
     df,
     x='IAN',
@@ -96,6 +101,11 @@ O gráfico mostra a distribuição do nível de adequação dos alunos.
 
 st.header('2. Desempenho acadêmico (IDA)')
 
+st.markdown('''
+O desempenho acadêmico médio (IDA) está melhorando, estagnado ou caindo ao longo
+das fases e anos?
+''')
+
 ida_ano = df.groupby('Ano')['IDA'].mean().reset_index()
 
 fig = px.line(
@@ -115,6 +125,11 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.header('3. Relação entre IEG, IDA e IPV')
 
+st.markdown('''
+O grau de engajamento dos alunos (IEG) tem relação direta com seus indicadores 
+de desempenho (IDA) e do ponto de virada (IPV)?
+''')
+
 fig = px.scatter(
     df,
     x='IEG',
@@ -131,6 +146,11 @@ st.plotly_chart(fig, use_container_width=True)
 # =========================================================
 
 st.header('4. Autoavaliação dos alunos (IAA)')
+
+st.markdown('''
+As percepções dos alunos sobre si mesmos (IAA) são coerentes com seu desempenho
+real (IDA) e engajamento (IEG)?
+''')
 
 fig = px.scatter(
     df,
@@ -149,6 +169,11 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.header('5. Aspectos psicossociais (IPS)')
 
+st.markdown('''
+Há padrões psicossociais (IPS) que antecedem quedas de desempenho acadêmico
+ou de engajamento?
+''')
+
 fig = px.box(
     df,
     x='IAN',
@@ -164,6 +189,11 @@ st.plotly_chart(fig, use_container_width=True)
 # =========================================================
 
 st.header('6. Aspectos psicopedagógicos (IPP)')
+
+st.markdown('''
+As avaliações psicopedagógicas (IPP) confirmam ou contradizem a defasagem
+identificada pelo IAN?
+''')
 
 fig = px.scatter(
     df,
@@ -181,6 +211,11 @@ st.plotly_chart(fig, use_container_width=True)
 # =========================================================
 
 st.header('7. Ponto de virada (IPV)')
+
+st.markdown('''
+Quais comportamentos - acadêmicos, emocionais ou de engajamento - mais
+influenciam o IPV ao longo do tempo?
+''')
 
 corr_ipv = df[[
     'IPV',
@@ -200,6 +235,11 @@ st.bar_chart(corr_ipv)
 
 st.header('8. Multidimensionalidade dos indicadores')
 
+st.markdown('''
+Quais combinações de indicadores (IDA + IEG + IPS + IPP) elevam mais a 
+nota global do aluno (INDE)?
+''')
+
 corr_inde = df[[
     'INDE',
     'IDA',
@@ -217,6 +257,11 @@ st.bar_chart(corr_inde)
 
 st.header('9. Previsão de risco com Machine Learning')
 
+st.markdown('''
+Quais padrões nos indicadores permitem identificar alunos em risco antes de queda
+no desempenho ou aumento da defasagem? Construa um modelo preditivo que mostre uma
+probabilidade do aluno ou aluna entrar em risco de defasagem.
+''')
 
 features = [
     'IEG',
@@ -237,10 +282,8 @@ features = [
     'idade_calc'
 ]
 
-
 X = df[features]
 y = df['risco']
-
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
@@ -250,16 +293,13 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y
 )
 
-
 preprocess_pipeline = Pipeline([
     ('min_max_scaler', MinMax()),
     ('one_hot_encoding', OneHotEncodingNames())
 ])
 
-
 X_train_prep = preprocess_pipeline.fit_transform(X_train)
 X_test_prep = preprocess_pipeline.transform(X_test)
-
 
 modelo = RandomForestClassifier(
     random_state=42,
@@ -268,9 +308,7 @@ modelo = RandomForestClassifier(
 
 modelo.fit(X_train_prep, y_train)
 
-
 y_pred = modelo.predict(X_test_prep)
-
 
 accuracy = accuracy_score(y_test, y_pred)
 auc = roc_auc_score(
@@ -278,7 +316,6 @@ auc = roc_auc_score(
     modelo.predict_proba(X_test_prep),
     multi_class='ovr'
 )
-
 
 col1, col2 = st.columns(2)
 
@@ -329,6 +366,12 @@ st.bar_chart(importancias)
 # =========================================================
 
 st.header('10. Efetividade do programa')
+
+st.markdown('''
+Os indicadores mostram melhora consistente ao longo do ciclo nas diferentes
+fases (Quartzo, Ágata, Ametista e Topázio), confirmando o impacto real
+do programa?
+''')
 
 pedra_inde = df.groupby('Pedra')['INDE'].mean().reset_index()
 
