@@ -153,7 +153,6 @@ fig = px.box(
     df,
     x='IAN',
     y='IPS',
-    color='IAN',
     title='IPS por categoria de risco'
 )
 
