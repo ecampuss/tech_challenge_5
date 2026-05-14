@@ -77,7 +77,6 @@ st.header('1. Adequação do nível (IAN)')
 fig = px.histogram(
     df,
     x='IAN',
-    color='IAN',
     title='Distribuição do IAN'
 )
 
