@@ -11,7 +11,7 @@ from sklearn.metrics import (
     roc_auc_score
 )
 
-from utils import preprocess_pipeline
+from utils import preprocess_pipeline, DataCleaning
 
 # Configuração inicial da página
 st.set_page_config(
