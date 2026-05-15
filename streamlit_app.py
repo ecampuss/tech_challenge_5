@@ -144,6 +144,18 @@ fig = px.scatter(
 
 st.plotly_chart(fig, use_container_width=True)
 
+st.markdown('''
+### Como interpretar este gráfico
+
+Cada ponto representa um aluno.
+O eixo horizontal mostra o nível de engajamento (IEG) e o eixo vertical mostra
+o desempenho acadêmico (IDA).
+Quanto mais para cima e para a direita estiverem os pontos, maior tende a ser o
+desempenho e o engajamento do aluno.
+O gráfico permite identificar se existe relação entre participação nas atividades
+e desempenho acadêmico, além de observar como o IPV varia entre os diferentes
+perfis de alunos.
+''')
 
 
 # 4. AUTOAVALIAÇÃO (IAA)
@@ -165,6 +177,17 @@ fig = px.scatter(
 
 st.plotly_chart(fig, use_container_width=True)
 
+st.markdown('''
+### Como interpretar este gráfico
+
+Cada ponto representa um aluno.
+O eixo horizontal mostra a autoavaliação do aluno (IAA) e o eixo vertical mostra o
+desempenho acadêmico real (IDA).
+O gráfico ajuda a comparar a percepção que o aluno tem sobre si mesmo com seu desempenho
+acadêmico efetivo.
+Pontos mais altos indicam alunos com melhor desempenho, enquanto a distribuição geral
+ajuda a identificar se existe coerência entre autoavaliação, desempenho e engajamento.
+''')
 
 
 # 5. ASPECTOS PSICOSSOCIAIS (IPS)
@@ -185,6 +208,17 @@ fig = px.box(
 
 st.plotly_chart(fig, use_container_width=True)
 
+st.markdown('''
+### Como interpretar este gráfico
+
+O gráfico apresenta a distribuição dos indicadores psicossociais (IPS) para cada
+nível de IAN.
+A linha central da caixa representa a mediana dos valores.
+Caixas maiores indicam maior variação entre os alunos daquele grupo.
+Esse gráfico ajuda a identificar se alunos com maior risco de defasagem também apresentam
+padrões psicossociais mais baixos, sugerindo possível relação entre fatores emocionais e
+desempenho acadêmico.
+''')
 
 
 # 6. ASPECTOS PSICOPEDAGÓGICOS (IPP)
@@ -206,6 +240,17 @@ fig = px.scatter(
 
 st.plotly_chart(fig, use_container_width=True)
 
+st.markdown('''
+### Como interpretar este gráfico
+
+Cada ponto representa um aluno.
+O eixo horizontal mostra o indicador psicopedagógico (IPP) e o eixo vertical representa
+o nível de adequação acadêmica (IAN).
+O gráfico permite analisar se avaliações psicopedagógicas mais positivas estão associadas
+a melhores níveis de adequação e menor risco de defasagem.
+A concentração dos pontos ajuda a identificar padrões de relação entre acompanhamento
+psicopedagógico e desempenho educacional.
+''')
 
 
 # 7. PONTO DE VIRADA (IPV)
@@ -228,6 +273,17 @@ corr_ipv = df[[
 
 st.bar_chart(corr_ipv)
 
+st.markdown('''
+### Como interpretar este gráfico
+
+As barras mostram o nível de correlação entre o IPV e os demais indicadores da base.
+Quanto maior a barra, maior é a influência daquela variável sobre o ponto de virada
+do aluno.
+Valores positivos indicam relação direta, enquanto valores mais baixos indicam menor
+impacto no IPV.
+Esse gráfico ajuda a identificar quais fatores acadêmicos, emocionais e de engajamento
+possuem maior associação com a evolução dos alunos.
+''')
 
 
 # 8. MULTIDIMENSIONALIDADE
@@ -249,6 +305,16 @@ corr_inde = df[[
 
 st.bar_chart(corr_inde)
 
+st.markdown('''
+### Como interpretar este gráfico
+
+As barras mostram o nível de correlação entre o INDE e os principais indicadores
+multidimensionais dos alunos.
+Quanto maior a barra, maior é a relação daquele indicador com a nota global do
+estudante.
+O gráfico ajuda a identificar quais combinações de fatores acadêmicos, emocionais,
+psicossociais e de engajamento mais contribuem para o desempenho geral dos alunos.
+''')
 
 
 # 9. MACHINE LEARNING
